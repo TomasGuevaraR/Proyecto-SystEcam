@@ -1,0 +1,73 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcffff;
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #00c2ab;
+    padding: 15px 0;
+    position: fixed;  /* Fijar el header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+/* Contenedor del Header */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo {
+    max-width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+.nombre-software {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 1200px;
+    margin-top: 80px; /* Ajusta este valor para bajar el listado */
+    padding: 0;
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Agregar espaciado a la tabla si es necesario */
+.table {
+    margin-top: 20px; /* Ajusta según sea necesario */
+}

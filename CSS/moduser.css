@@ -1,0 +1,138 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcffff;
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #00c2ab;
+    padding: 15px 0;
+    position: fixed;  /* Fijar el header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+/* Contenedor del Header */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo {
+    max-width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+.nombre-software {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+/* Ajustes para bajar el mensaje de bienvenida */
+.bienvenida {
+    margin-top: 120px; /* Ajusta este valor para colocarlo correctamente debajo del header */
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+
+main {
+    padding-top: 0px;  /* Reducir el padding-top para acercar el main al header */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 130px);  /* Ajustar la altura para dejar espacio para el header y el footer */
+}
+
+
+
+.grupo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+
+button {
+    background-color: #00c2ab;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px; 
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Estilo para quitar el subrayado de los botones tipo link */
+a {
+    text-decoration: none; /* Quitar subrayado para todos los enlaces */
+}
+
+button, a.button {
+    background-color: #00c2ab;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px; 
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Asegurar que el subrayado no aparezca en los enlaces tipo botón */
+}
+
+button:hover, a.button:hover {
+    background-color: #008f7a; 
+}
+
+
+button i {
+    margin-right: 10px; 
+}
+
+button:hover {
+    background-color: #008f7a; 
+}
+
+/* Pie de Página */
+footer {
+    width: 100%;
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

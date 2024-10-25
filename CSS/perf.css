@@ -1,0 +1,128 @@
+/* General */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcffff;
+}
+
+/* Animación para el encabezado */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #00c2ab;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    max-width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+
+
+.nombre-software {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+
+
+/* Contenedor Principal */
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 150px;
+    
+}
+
+.profile-card .icon {
+    font-size: 2.5rem;
+    color: #00c2ab;
+    margin-bottom: 10px;
+}
+
+.profile-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profile-card p {
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.profile-card p i {
+    margin-right: 8px;
+    color: #00c2ab;
+}
+
+.profile-card .btn {
+    background-color: #00c2ab;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.profile-card .btn:hover {
+    background-color: #00a592;
+}
+
+
+/* Pie de Página */
+footer {
+    width: 100%;
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

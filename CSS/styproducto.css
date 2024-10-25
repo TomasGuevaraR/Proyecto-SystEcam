@@ -1,0 +1,102 @@
+/* General */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcffff;
+}
+
+/* Animación para el encabezado */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #00c2ab;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    max-width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+.nombre-software {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 0px;
+    margin-top: 100px;
+}
+
+/* Botones principales */
+.container .btn {
+    margin-bottom: 100px; /* Añadir margen para separación */
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+/* Efecto hover para los botones */
+.container .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Pie de Página */
+footer {
+    width: 100%;
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

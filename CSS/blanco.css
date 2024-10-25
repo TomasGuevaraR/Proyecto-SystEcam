@@ -1,0 +1,99 @@
+/* Estilos para el encabezado */
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00c2ab;
+    padding: 10px;
+}
+
+.logo {
+     max-height: 40px;            /* Asegúrate de que el logo tenga un tamaño adecuado */
+    margin-right: 15px; 
+}
+
+.nombre-container {
+    flex-grow: 1;
+    text-align: center;
+    
+}
+
+.nombre-software a {
+    color: #ffff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    font-size: 2rem;
+    position: absolute;
+    left: 40%;                   /* Mover al centro del contenedor padre */
+    top: 2%;
+    
+   
+    
+}
+nav {
+    background-color: #f2f2f2;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ddd;
+}nav {
+    background-color: #f2f2f2;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ddd;
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
