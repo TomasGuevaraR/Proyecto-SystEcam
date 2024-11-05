@@ -30,7 +30,7 @@
         <aside class="formulario">
             <h2>Registro de Datos</h2> 
             
-            <form action="/Control/registerC.PHP" method="post">
+            <form action="control/registerC.php" method="post">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
                 

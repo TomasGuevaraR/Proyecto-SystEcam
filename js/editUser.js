@@ -1,14 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const editButtons = document.querySelectorAll('.btn-edit');
-    editButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Obtener datos del botón
-            const id = this.getAttribute('data-id');
-            const rol = this.getAttribute('data-rol');
+    const editForm = document.getElementById('editForm');
 
-            // Asignar valores a los campos del formulario en el modal
-            document.getElementById('edit-id').value = id;
-            document.getElementById('edit-rol').value = rol; // Asigna el valor del rol seleccionado
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Obtén los datos del usuario del botón
+            const userId = this.getAttribute('data-id');
+            const userRol = this.getAttribute('data-rol');
+            const userEstado = this.getAttribute('data-estado');
+            
+            // Establece los valores en el formulario del modal
+            document.getElementById('edit-id').value = userId;
+            document.getElementById('edit-rol').value = userRol;
+            document.getElementById('edit-estado').value = userEstado;
         });
     });
 });

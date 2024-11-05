@@ -1,6 +1,7 @@
 <?php
 
-require_once("BaseDatos/conexion.php");
+require_once "../BaseDatos/conexion.php";
+
 
 $name = $_POST["nombre"];
 $usuario = $_POST["usuario"];
@@ -64,7 +65,7 @@ $conn->close();
 
     // Redirigir al hacer clic en el botón "Cerrar"
     document.getElementById('cerrarModal').addEventListener('click', function() {
-        window.location.href = 'index.php';
+        window.location.href = '../index.php';
     });
 </script>
 <?php endif; ?>

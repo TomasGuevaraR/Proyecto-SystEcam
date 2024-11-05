@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,6 +11,14 @@ session_start();
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+
+    <!-- Mostrar alerta si hay un error en las credenciales -->
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid_credentials'): ?>
+        <script>
+            alert("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+        </script>
+    <?php endif; ?>
+
     <!-- Encabezado con Logo -->
     <header>
         <div class="header-container">
@@ -18,7 +26,6 @@ session_start();
             <h1 class="nombre-software">SystEcam</h1>
         </div>
     </header>
-    
 
     <!-- Contenedor Principal -->
     <div class="container">
@@ -33,15 +40,14 @@ session_start();
             <h2>Iniciar Sesión</h2>
             <form action="Control/loginControl.php" method="post">
                 <label for="usuario">Usuario:</label>
-                <input type="text" name="usuario" id="usuario" class="form-input" placeholder="Usuario">
+                <input type="text" name="usuario" id="usuario" class="form-input" placeholder="Usuario" required>
 
                 <label for="contraseña">Contraseña:</label>
-                <input type="password" id="contraseña" name="pass" class="form-input" placeholder="Contraseña">
+                <input type="password" id="contraseña" name="pass" class="form-input" placeholder="Contraseña" required>
 
                 <button type="submit">Iniciar Sesión</button>
                 <button type="button" onclick="location.href='registro.php'">Regístrate</button>
             </form>
-
         </aside>
     </div>
 
@@ -49,8 +55,6 @@ session_start();
     <footer>
         <p>&copy; 2024 SystEcam. Todos los derechos reservados.</p>
     </footer>
-
-
 
 </body>
 </html>

@@ -56,8 +56,9 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
 <main>
     <div class="grupo">
         <!-- Botón para Venta -->
-        <button><i class="bi bi-cash-coin"></i>VENTA</button>
-
+        <a href="venta.php">
+            <button><i class="bi bi-cash-coin"></i>VENTA</button>
+        </a>
         <!-- Botón para Productos con enlace a modproducto.php -->
         <a href="modproducto.php">
             <button><i class="bi bi-box-seam"></i>PRODUCTOS</button>

@@ -68,10 +68,12 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
                 </button>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modalEliminar">
+                <a href="eliminarProducto.php" class="btn btn-danger w-100" onclick="return confirmarEliminacion();">
                     <i class="bi bi-trash"></i> Eliminar
-                </button>
+                </a>
             </div>
+
+
         <?php endif; ?>
     </div>
 
@@ -222,6 +224,17 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
     }
 </script>
    
+
+
+<!-- ... Tu código posterior ... -->
+
+<script>
+    function confirmarEliminacion() {
+        // Mensaje de confirmación
+        var mensaje = "Eliminar un producto puede tener inconvenientes con la base de datos. ¿Está seguro de que desea continuar?";
+        return confirm(mensaje); // Si el usuario hace clic en "Aceptar", retorna true, de lo contrario retorna false.
+    }
+</script>
 
     <!-- Pie de Página -->
     <footer>
