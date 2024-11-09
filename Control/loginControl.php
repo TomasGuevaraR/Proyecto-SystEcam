@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
     $fila = $result->fetch_assoc();
     
     // Almacena más datos del usuario en la sesión
-    $_SESSION['id'] = $fila["id"];
+    $_SESSION['id_usuario'] = $fila["id"];  // Cambio aquí
     $_SESSION['nombre'] = $fila["nombre"];
     $_SESSION['usuario'] = $fila["usuario"];
     $_SESSION['email'] = $fila["email"];

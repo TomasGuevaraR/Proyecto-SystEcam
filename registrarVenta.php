@@ -1,33 +1,64 @@
 <?php
 session_start();
 
-if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-    die('Error de validación CSRF');
+if (!isset($_SESSION['id_usuario'])) {
+    die("Error: usuario no autenticado.");
 }
 
-// Validar datos recibidos
-if (!isset($_POST['producto_id']) || !isset($_POST['cantidad']) || !isset($_POST['precio_total'])) {
-    die('Datos incompletos');
+require_once("BaseDatos/Conexion.php");
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-$producto_id = filter_var($_POST['producto_id'], FILTER_VALIDATE_INT);
-$cantidad = filter_var($_POST['cantidad'], FILTER_VALIDATE_INT);
-$precio_total = filter_var($_POST['precio_total'], FILTER_VALIDATE_FLOAT);
-
-if ($producto_id === false || $cantidad === false || $precio_total === false) {
-    die('Datos inválidos');
+// Verificar el token CSRF
+if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    die("Error de seguridad: token CSRF no válido.");
 }
 
-// Verificar stock disponible
-$stmt = $conn->prepare("SELECT stock FROM productos WHERE id_producto = ?");
-$stmt->bind_param("i", $producto_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$producto = $result->fetch_assoc();
+// Asegurarse de que el usuario esté autenticado y obtener su ID
+$id_usuario = $_SESSION['id_usuario'];
 
-if ($producto['stock'] < $cantidad) {
-    die('Stock insuficiente');
+// Decodificar el JSON de productos
+$productosVenta = json_decode($_POST['productos_venta'], true);
+
+if (empty($productosVenta)) {
+    echo json_encode(['success' => false, 'message' => 'No se recibieron productos para la venta.']);
+    exit;
 }
 
-// Proceder con la venta
-// ... 
+// Comenzar la transacción
+$conn->begin_transaction();
+
+try {
+    // Recorrer los productos y guardarlos en la tabla de ventas
+    foreach ($productosVenta as $producto) {
+        $productoId = $producto['producto_id'];
+        $cantidad = $producto['cantidad'];
+        $precioTotal = $producto['subtotal'];
+
+        // Preparar la declaración SQL con el campo `id_usuario` incluido
+        $stmt = $conn->prepare("INSERT INTO ventas (id_producto, cantidad, total, fecha_venta, id_usuario) VALUES (?, ?, ?, NOW(), ?)");
+        
+        if (!$stmt) {
+            throw new Exception("Error en la consulta SQL: " . $conn->error);
+        }
+
+        $stmt->bind_param("iidi", $productoId, $cantidad, $precioTotal, $id_usuario);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error al registrar la venta: " . $stmt->error);
+        }
+    }
+
+    // Confirmar la transacción
+    $conn->commit();
+
+    // Responder con éxito
+    echo json_encode(['success' => true, 'message' => 'Venta registrada correctamente.']);
+} catch (Exception $e) {
+    // En caso de error, revertir la transacción
+    $conn->rollback();
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+}
+?>
