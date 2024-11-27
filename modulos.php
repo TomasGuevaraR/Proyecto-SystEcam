@@ -64,10 +64,14 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
             <button><i class="bi bi-box-seam"></i>PRODUCTOS</button>
         </a>
 
-        <button><i class="bi bi-graph-up"></i>REPORTES</button>
+        <a href="reporte.php">
+            <button><i class="bi bi-box-seam">REPORTES</i></button>
+        </a>
     </div>
     <div class="grupo">
-        <button><i class="bi bi-people"></i>CLIENTES</button>
+    <a href="clientes.php">
+            <button><i class="bi bi-truck"></i>CLIENTES</button>
+        </a>
 
         <!-- Botón para Proveedores -->
         <button><i class="bi bi-truck"></i>PROVEEDORES</button>

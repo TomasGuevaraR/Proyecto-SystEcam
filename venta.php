@@ -82,15 +82,16 @@ $resultVentas = $stmtVentas->get_result();
             <label for="producto" class="form-label">Producto</label>
             <select class="form-select" id="producto" name="producto_id" required>
                 <option value="">Seleccione un producto</option>
-    <?php while ($row = $resultProductos->fetch_assoc()): ?>
-        <option value="<?= htmlspecialchars($row['id_producto']) ?>" 
-                data-precio="<?= htmlspecialchars($row['precio_venta']) ?>"
-                data-nombre="<?= htmlspecialchars($row['nombre_producto']) ?>"
-                data-stock="<?= htmlspecialchars($row['stock']) ?>">
-            <?= htmlspecialchars($row['nombre_producto']) ?>
-        </option>
-    <?php endwhile; ?>
-</select>
+                <?php while ($row = $resultProductos->fetch_assoc()): ?>
+                <option value="<?= htmlspecialchars($row['id_producto']) ?>" 
+                    data-precio="<?= htmlspecialchars($row['precio_venta']) ?>"
+                    data-nombre="<?= htmlspecialchars($row['nombre_producto']) ?>"
+                    data-stock="<?= htmlspecialchars($row['cantidad']) ?>">
+                <?= htmlspecialchars($row['nombre_producto']) ?>
+                </option>
+        <?php endwhile; ?>
+    </select>
+
 
         </div>
 
@@ -139,31 +140,66 @@ $resultVentas = $stmtVentas->get_result();
         <button type="button" class="btn btn-secondary" id="cancelarVenta">Cancelar Venta</button>
     </form>
 
-    <!-- Historial de Ventas -->
+    <?php
+// Definir la consulta SQL para obtener el historial de ventas
+$sqlVentas = "
+    SELECT v.id_venta, SUM(d.cantidad) AS total_cantidad, v.total, v.fecha_venta
+    FROM ventas v
+    INNER JOIN detalle_venta d ON v.id_venta = d.id_venta
+    WHERE v.id_usuario = ?
+    GROUP BY v.id_venta, v.total, v.fecha_venta
+    ORDER BY v.fecha_venta DESC
+    LIMIT 25";
+
+
+// Preparamos la consulta
+$stmtVentas = $conn->prepare($sqlVentas);
+
+// Verificamos si la preparación fue exitosa
+if ($stmtVentas === false) {
+    die("Error al preparar la consulta: " . $conn->error);
+}
+
+// Vinculamos el parámetro (id_usuario de la sesión)
+$stmtVentas->bind_param("i", $_SESSION['id_usuario']);  // "i" es para entero (id_usuario)
+
+// Ejecutamos la consulta
+$stmtVentas->execute();
+
+// Obtenemos los resultados
+$resultVentas = $stmtVentas->get_result();
+?>
+
+<div class="container mt-5">
     <h2 class="mt-5">Historial de Ventas</h2>
     <table class="table">
-        <thead>
+    <thead>
+        <tr>
+            <th>ID Venta</th>
+            <th>Cantidad</th>
+            <th>Precio Total</th>
+            <th>Fecha</th>
+            <th>Acciones</th> <!-- Nueva columna -->
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($venta = $resultVentas->fetch_assoc()): ?>
             <tr>
-                <th>ID Venta</th>
-                <th>ID Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Total</th>
-                <th>Fecha</th>
+                <td><?= $venta['id_venta'] ?></td>
+                <td><?= $venta['total_cantidad'] ?></td>
+                <td><?= $venta['total'] ?></td>
+                <td><?= $venta['fecha_venta'] ?></td>
+                <td>
+                    <!-- Botón para ver el detalle -->
+                    <a href="detalleVenta.php?id_venta=<?= $venta['id_venta'] ?>" class="btn btn-info btn-sm">Ver Detalle</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php while ($venta = $resultVentas->fetch_assoc()): ?>
-                <tr>
-                    <td><?= $venta['id_venta'] ?></td>
-                    <td><?= $venta['id_producto'] ?></td>
-                    <td><?= $venta['cantidad'] ?></td>
-                    <td><?= $venta['total'] ?></td>
-                    <td><?= $venta['fecha_venta'] ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
 </div>
+
 
 <script>
 $(document).ready(function() {
@@ -275,6 +311,9 @@ $(document).ready(function() {
 });
 
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/verificar_stock.js"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
