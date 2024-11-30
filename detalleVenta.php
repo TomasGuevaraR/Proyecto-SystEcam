@@ -121,7 +121,7 @@ $totalVenta = $rowTotal['total'] ?? 0;
     <h3 class="text-end">Total: $<?= number_format($totalVenta, 2) ?></h3>
     <button class="btn btn-secondary" onclick="window.print()">Imprimir Factura</button>
     <a href="venta.php" class="btn btn-primary">Regresar</a>
-    <a href="generarFactura.php?id_venta=<?= $id_venta ?>" target="_blank" class="btn btn-primary">Descargar Factura (PDF)</a>
+   
 
 
 </div>

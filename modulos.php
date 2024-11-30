@@ -65,8 +65,9 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
         </a>
 
         <a href="reporte.php">
-            <button><i class="bi bi-box-seam">REPORTES</i></button>
+        <button><i class="bi bi-bar-chart"></i> REPORTES</button>
         </a>
+
     </div>
     <div class="grupo">
     <a href="clientes.php">

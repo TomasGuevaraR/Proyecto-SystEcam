@@ -59,13 +59,16 @@ header {
 
 
 main {
-    padding-top: 0px;  /* Reducir el padding-top para acercar el main al header */
-    margin: 0;
+    margin-top: 0px; /* Ajusta este valor según la altura de tu header */
+    padding: 20px; /* Añade espacio interno para los filtros */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: calc(100vh - 130px);  /* Ajustar la altura para dejar espacio para el header y el footer */
+}
+
+.mt-5 {
+    margin-top: 0px !important; /* Sobrescribe el margen predeterminado */
 }
 
 
@@ -136,3 +139,4 @@ footer {
     left: 0;
     right: 0;
 }
+

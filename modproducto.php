@@ -126,8 +126,8 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
                     </div>
 
                     <div class="mb-3">
-                        <label for="codigo_invima" class="form-label">codigo invima</label>
-                        <input type="text" class="form-control" id="codigo_invima" name="codigo_invima" placeholder="Ingrese el codigo invima">
+                        <label for="cod_invima" class="form-label">codigo invima</label>
+                        <input type="text" class="form-control" id="cod_invima" name="cod_invima" placeholder="Ingrese el codigo invima">
                     </div>
 
                     <div class="mb-3">
@@ -226,7 +226,7 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
    
 
 
-<!-- ... Tu código posterior ... -->
+
 
 <script>
     function confirmarEliminacion() {

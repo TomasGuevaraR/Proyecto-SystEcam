@@ -18,7 +18,7 @@ if ($conn->connect_errno) {
 }
 
 // Consulta para obtener los productos
-$sql = "SELECT `id`, `nombre_producto`, `cantidad`, `precio_costo`, `precio_venta`, `laboratorio`, `categoria`, `fecha_vencimiento`, `ubicacion` FROM `productos`";
+$sql = "SELECT `id`, `nombre_producto`, `cantidad`, `precio_costo`, `precio_venta`, `laboratorio`, `categoria`, `cod_invima`,`fecha_vencimiento`, `ubicacion` FROM `productos`";
 $result = $conn->query($sql);
 
 
@@ -36,6 +36,7 @@ if ($result) {
         echo "<td>{$row['precio_venta']}</td>";
         echo "<td>{$row['laboratorio']}</td>";
         echo "<td>{$row['categoria']}</td>";
+        echo "<td>{$row['cod_invima']}</td>";
         echo "<td>{$row['fecha_vencimiento']}</td>";
         echo "<td>{$row['ubicacion']}</td>";
         echo "</tr>";

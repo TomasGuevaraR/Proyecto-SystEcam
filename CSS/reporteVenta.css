@@ -1,0 +1,69 @@
+/* General */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcffff;
+    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #00c2ab;
+    padding: 15px 0;
+    position: fixed; /* Fijar el header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideInFromLeft 0.5s ease-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Mejor visualización */
+}
+
+/* Botones */
+.d-flex.gap-3.my-3 {
+    margin-top: 90px; /* Separar los botones del encabezado */
+}
+
+/* Encabezado centrado */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+    max-width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+/* Nombre del software */
+.nombre-software {
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+/* Resultados */
+section.mt-4.bg-light.p-4.rounded.shadow-sm {
+    margin-bottom: 80px; /* Espacio adicional para separar del footer */
+}
+
+/* Pie de página */
+footer {
+    background-color: #00c2ab;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

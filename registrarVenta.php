@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token']) && $_PO
     foreach ($productosVenta as $producto) {
         $productoId = $producto['producto_id'];
         $cantidadVendida = $producto['cantidad'];
-        $precio = $producto['precio'];
+        $precio = $producto['precio_unitario'];
         $subtotal = $producto['subtotal'];
 
         // Insertar el detalle de la venta
