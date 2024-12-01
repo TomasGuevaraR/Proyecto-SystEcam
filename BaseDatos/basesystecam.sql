@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2024 a las 19:03:26
+-- Tiempo de generación: 01-12-2024 a las 19:28:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -81,7 +81,10 @@ INSERT INTO `detalle_venta` (`id_detalle`, `id_venta`, `id_producto`, `cantidad`
 (42, 37, 4, 3, NULL, 150.00),
 (43, 38, 4, 9, NULL, 450.00),
 (44, 38, 3, 1, NULL, 100.00),
-(45, 39, 3, 7, 100.00, 700.00);
+(45, 39, 3, 7, 100.00, 700.00),
+(46, 40, 8, 6, 1500.00, 9000.00),
+(47, 40, 10, 1, 15000.00, 15000.00),
+(48, 40, 11, 1, 18000.00, 18000.00);
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,13 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `cantidad`, `precio_costo`, `precio_venta`, `laboratorio`, `categoria`, `cod_invima`, `fecha_vencimiento`, `ubicacion`) VALUES
 (3, 'Aspirina', 0, 500, 100, 'Bayer', 'Analgésico', 'M365425J', '2024-12-31', 'A1'),
-(4, 'acetaminofen', 421, 50, 50, 'bay', 'Analgésico', 'J62541L', '2025-11-24', 'C1');
+(4, 'acetaminofen', 421, 50, 50, 'bay', 'Analgésico', 'J62541L', '2025-11-24', 'C1'),
+(6, 'Loratadina', 100, 450, 600, 'bay', 'Alérgicos', NULL, '2026-06-09', 'D1'),
+(7, 'Desonida', 100, 6000, 10000, 'Bayer', 'piel', NULL, '2027-10-12', 'A2'),
+(8, 'LeGrip', 194, 800, 1500, 'Icom', 'antigripal ', NULL, '2025-12-30', 'C1'),
+(9, 'Teofilina', 50, 6000, 12000, 'Anglopharma', 'Espectorante', '2920MHU67', '2026-01-30', 'B2'),
+(10, 'Brocoas', 29, 8000, 15000, 'Natural', 'antigripal ', 'RAS142627', '2026-08-11', 'C1'),
+(11, 'Foroato de mometasona', 19, 9000, 18000, 'Novamed', 'Alérgicos', '2020M-9E9E', '2027-08-30', 'C1');
 
 -- --------------------------------------------------------
 
@@ -203,7 +212,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `email`, `pass`, `roles_id`, 
 (43, 'Ana Martinez', 'ana', 'ana@gmail.com', '12345', 2, 'activo'),
 (46, 'juan Gonzalez', 'juan1', 'juan@gmail.com', '12345', 1, 'activo'),
 (47, 'Luis Gomez5', 'luis55', 'luisg5@gmnail.com', '12345', 2, 'activo'),
-(48, 'mario', 'marios', 'mario@gmnail.com', '12345', 2, 'activo');
+(48, 'mario', 'marios', 'mario@gmnail.com', '12345', 2, 'activo'),
+(49, 'María Gómez', '12345', 'mariagoemez@gmail.com', '123', 2, 'activo');
 
 -- --------------------------------------------------------
 
@@ -253,7 +263,8 @@ INSERT INTO `ventas` (`id_venta`, `id_usuario`, `fecha_venta`, `cantidad`, `tota
 (36, 22, '2024-11-22 20:12:47', 0, 450.00),
 (37, 22, '2024-11-28 21:03:43', 0, 850.00),
 (38, 22, '2024-11-28 21:23:00', 0, 550.00),
-(39, 22, '2024-11-28 22:06:44', 0, 700.00);
+(39, 22, '2024-11-28 22:06:44', 0, 700.00),
+(40, 49, '2024-12-01 12:53:59', 0, 42000.00);
 
 --
 -- Índices para tablas volcadas
@@ -308,7 +319,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_reportes`
@@ -320,7 +331,7 @@ ALTER TABLE `historial_reportes`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_producto` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -332,13 +343,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas

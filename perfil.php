@@ -49,13 +49,13 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
             <i class="bi bi-person-circle"></i>
         </div>
         <h3>Mi Perfil</h3>
-        <p><i class="bi bi-person"></i><strong>ID: </strong><?php echo $_SESSION['id']; ?></p>
+        <p><i class="bi bi-person"></i><strong>ID: </strong><?php echo $_SESSION['id_usuario']; ?></p>
         <p><i class="bi bi-person"></i><strong>Nombre: </strong><?php echo $_SESSION['nombre']; ?></p>
         <p><i class="bi bi-person-badge"></i><strong>Usuario: </strong><?php echo $_SESSION['usuario']; ?></p>
         <p><i class="bi bi-envelope"></i><strong>Email: </strong><?php echo $_SESSION['email']; ?></p>
 
-        <!-- Botón para editar perfil -->
-        <a href="editar_perfil.php" class="btn">Editar Perfil</a>
+        <!-- Botón para editar perfil 
+        <a href="editar_perfil.php" class="btn">Editar Perfil</a> -->
     </div>
 
     <!-- Pie de Página -->
