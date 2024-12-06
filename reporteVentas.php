@@ -1,8 +1,7 @@
 <?php
 
-session_start();  // Asegúrate de iniciar la sesión al principio del archivo
+session_start();
 require_once 'BaseDatos/Conexion.php';
-
 
 // Permitir acceso tanto a admin como a user
 if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'user')) {
@@ -10,14 +9,13 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
     exit;
 }
 
-
 // Recupera los valores de la sesión
-$id_usuario = $_SESSION['id_usuario'];  
-$nombre_usuario = $_SESSION['nombre'];  
-
+$id_usuario = $_SESSION['id_usuario'];
+$nombre_usuario = $_SESSION['nombre'];
 
 $errores = [];
 $resultados = null;
+$fecha_inicio = $fecha_fin = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibir fechas del formulario
@@ -30,10 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fecha_fin .= ' 23:59:59';
 
         $query = "SELECT v.id_venta, v.fecha_venta, v.cantidad, v.total, 
-                         dv.id_producto, dv.cantidad AS cantidad_producto, dv.precio, dv.subtotal
-                  FROM ventas v
-                  INNER JOIN detalle_venta dv ON v.id_venta = dv.id_venta
-                  WHERE v.fecha_venta BETWEEN ? AND ?";
+                 dv.id_producto, dv.cantidad AS cantidad_producto, dv.precio, dv.subtotal,
+                 p.nombre_producto
+          FROM ventas v
+          INNER JOIN detalle_venta dv ON v.id_venta = dv.id_venta
+          INNER JOIN productos p ON dv.id_producto = p.id_producto
+          WHERE v.fecha_venta BETWEEN ? AND ?";
 
         $stmt = $conn->prepare($query);
 
@@ -66,11 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/reporteVenta.css">
 </head>
 <body>
-<!-- Encabezado con Logo -->
 <header>
     <div class="header-container">
-        <img src="img/logo.png" alt="SystEcam" class="logo">
-        <h1 class="nombre-software"><a href="modulos.php" style="text-decoration: none; color: inherit;">SystEcam</a></h1>
+        <a href="modulos.php">
+            <img src="img/logo.png" alt="SystEcam" class="logo">
+        </a>
+        <h1 class="nombre-software"><a href="reporte.php" style="text-decoration: none; color: inherit;">SystEcam</a></h1>
         <div class="dropdown" style="position: absolute; right: 0;">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Menú
@@ -91,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <br>
 
-<!-- Mostrar errores -->
 <?php if (!empty($errores)): ?>
     <div class="alert alert-danger">
         <ul>
@@ -101,8 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </ul>
     </div>
 <?php endif; ?>
+<br>
 
-<!-- Botones -->
+
 <div class="d-flex gap-3 my-3">
     <form method="POST" action="Control/guardar_reporte.php">
         <input type="hidden" name="fecha_inicio" value="<?= htmlspecialchars($fecha_inicio) ?>">
@@ -113,36 +114,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <form method="POST" action="imprimirReporte.php">
+        <input type="hidden" name="fecha_inicio" value="<?= htmlspecialchars($fecha_inicio) ?>">
+        <input type="hidden" name="fecha_fin" value="<?= htmlspecialchars($fecha_fin) ?>">
         <button type="submit" class="btn btn-primary">Imprimir Reporte</button>
     </form>
 
-    <form method="POST" action="exportarExcel.php">
+    <form method="POST" action="exportarReporteVentas.php">
+        <input type="hidden" name="fecha_inicio" value="<?= htmlspecialchars($fecha_inicio) ?>">
+        <input type="hidden" name="fecha_fin" value="<?= htmlspecialchars($fecha_fin) ?>">
         <button type="submit" class="btn btn-info">Exportar a Excel</button>
     </form>
 </div>
-
-
-<!-- Resultados del Reporte -->
 <?php if ($resultados && $resultados->num_rows > 0): ?>
     <section class="mt-4 bg-light p-4 rounded shadow-sm">
         <h3 class="text-success">Resultados</h3>
-        <table class="table table-bordered table-striped mt-3">
+        <table class="table table-striped">
             <thead class="table-dark">
                 <tr>
                     <th>ID Venta</th>
                     <th>Fecha Venta</th>
                     <th>ID Producto</th>
+                    <th>Nombre del Producto</th>
                     <th>Cantidad Producto</th>
                     <th>Precio</th>
                     <th>Subtotal</th>
                 </tr>
             </thead>
+            
             <tbody>
                 <?php while ($row = $resultados->fetch_assoc()): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id_venta']) ?></td>
                         <td><?= htmlspecialchars($row['fecha_venta']) ?></td>
                         <td><?= htmlspecialchars($row['id_producto']) ?></td>
+                        <td><?= htmlspecialchars($row['nombre_producto']) ?></td>
                         <td><?= htmlspecialchars($row['cantidad_producto']) ?></td>
                         <td>$<?= number_format($row['precio'], 2) ?></td>
                         <td>$<?= number_format($row['subtotal'], 2) ?></td>
@@ -151,12 +156,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tbody>
         </table>
     </section>
+    
 <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
     <div class="alert alert-warning">No se encontraron resultados.</div>
 <?php endif; ?>
-</div>
 
-<!-- Pie de Página -->
 <footer class="text-center mt-5">
     <p>&copy; 2024 SystEcam. Todos los derechos reservados.</p>
 </footer>

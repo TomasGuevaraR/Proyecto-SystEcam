@@ -21,18 +21,23 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
 </head>
 <body>
 
-    <!-- Encabezado con Logo -->
-    <header>
+      <!-- Encabezado -->
+      <header>
         <div class="header-container">
-            <img src="img/logo.png" alt="SystEcam" class="logo">
-            <h1 class="nombre-software">SystEcam</h1>
+            <a href="modulos.php">
+                <img src="img/logo.png" alt="SystEcam" class="logo">
+            </a>
+            <h1 class="nombre-software">
+                <a href="modulos.php" style="text-decoration: none; color: inherit;">SystEcam</a>
+            </h1>
             <div class="dropdown" style="position: absolute; right: 0;">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Menú
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item active" href="#">Venta</a></li>
-                    <li><a class="dropdown-item" href="#">Producto</a></li>
+                    <li><a class="dropdown-item active" href="modulos.php">Inicio</a></li>
+                    <li><a class="dropdown-item" href="#">Venta</a></li>
+                    <li><a class="dropdown-item" href="modproducto.php">Producto</a></li>
                     <li><a class="dropdown-item" href="#">Reportes</a></li>
                     <li><a class="dropdown-item" href="#">Clientes</a></li>
                     <li><a class="dropdown-item" href="#">Proveedores</a></li>

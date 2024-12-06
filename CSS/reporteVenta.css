@@ -1,13 +1,29 @@
 /* General */
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     background-color: #fcffff;
-    padding-top: 80px; /* Espacio suficiente para el encabezado fijo */
+}
+
+/* Animación para el encabezado */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Encabezado */
@@ -15,37 +31,30 @@ header {
     width: 100%;
     background-color: #00c2ab;
     padding: 15px 0;
-    position: fixed; /* Fijar el header */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     animation: slideInFromLeft 0.5s ease-out;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Mejor visualización */
 }
 
-/* Botones */
-.d-flex.gap-3.my-3 {
-    margin-top: 90px; /* Separar los botones del encabezado */
-}
-
-/* Encabezado centrado */
 .header-container {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 80%;
     margin: 0 auto;
+    position: relative;
 }
 
-/* Logo */
 .logo {
     max-width: 150px;
     position: absolute;
     left: 0;
+    top: -03px;
 }
 
-/* Nombre del software */
 .nombre-software {
     font-size: 2rem;
     color: white;
@@ -54,7 +63,7 @@ header {
 
 /* Resultados */
 section.mt-4.bg-light.p-4.rounded.shadow-sm {
-    margin-bottom: 80px; /* Espacio adicional para separar del footer */
+    margin-bottom: -280px; /* Espacio adicional para separar del footer */
 }
 
 /* Pie de página */

@@ -1,9 +1,9 @@
 <?php
 session_start(); 
 
-// Permitir acceso tanto a admin como a user
-if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'user')) {
-    header('Location: index.php');
+// Permitir acceso el admin 
+if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin')) {
+    header('Location: modulos.php');
     exit;
 }
 
@@ -25,8 +25,10 @@ require_once 'BaseDatos/Conexion.php';
     <!-- Encabezado -->
     <header>
         <div class="header-container">
-            <img src="img/logo.png" alt="SystEcam" class="logo">
-            <h1 class="nombre-software">SystEcam</h1>
+            <a href="modulos.php">
+                <img src="img/logo.png" alt="SystEcam" class="logo">
+            </a>
+            <h1 class="nombre-software"><a href="modulos.php" style="text-decoration: none; color: inherit;">SystEcam</a></h1>
             <div class="dropdown" style="position: absolute; right: 0;">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Menú
@@ -66,9 +68,7 @@ require_once 'BaseDatos/Conexion.php';
                 </div>
             </form>
         </section>
-    </main>
-
-        
+    </main> 
 
 <section class="mt-5 bg-light p-4 rounded shadow-sm">
     <h2 class="text-primary mb-3">Historial de Reportes</h2>

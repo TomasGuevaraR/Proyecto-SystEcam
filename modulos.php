@@ -70,13 +70,15 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
 
     </div>
     <div class="grupo">
-    <a href="clientes.php">
+    <a href="reqFuturo.php">
             <button><i class="bi bi-truck"></i>CLIENTES</button>
         </a>
 
         <!-- Botón para Proveedores -->
-        <button><i class="bi bi-truck"></i>PROVEEDORES</button>
-
+        <a href="reqFuturo.php">
+            <button><i class="bi bi-truck"></i>PROVEEDORES</button>
+        </a>
+        
         <!-- Botón para Usuarios con enlace a usuarios.php -->
         <a href="usuarios.php">
             <button><i class="bi bi-truck"></i>USUARIOS</button>
@@ -88,9 +90,6 @@ if (!isset($_SESSION['nombre']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['r
         </a>
     </div>
 </main>
-
-
-    
 
     <!-- Pie de Página -->
     <footer>

@@ -52,16 +52,14 @@ header {
     max-width: 150px;
     position: absolute;
     left: 0;
+    top: -3px;
 }
-
-
 
 .nombre-software {
     font-size: 2rem;
     color: white;
     margin: 0;
 }
-
 
 
 /* Contenedor Principal */

@@ -54,7 +54,9 @@ $resultVentas = $stmtVentas->get_result();
 <!-- Encabezado con Logo -->
 <header>
     <div class="header-container">
-        <img src="img/logo.png" alt="SystEcam" class="logo">
+        <a href="modulos.php">
+            <img src="img/logo.png" alt="SystEcam" class="logo">
+         </a>
         <h1 class="nombre-software"><a href="modulos.php" style="text-decoration: none; color: inherit;">SystEcam</a></h1>
         <div class="dropdown" style="position: absolute; right: 0;">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -52,7 +52,9 @@ header {
     max-width: 150px;
     position: absolute;
     left: 0;
+    top: -03px; /
 }
+
 
 .nombre-software {
     font-size: 2rem;
