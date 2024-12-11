@@ -52,7 +52,7 @@ $result = $stmt->get_result();
 <br>
 <br>
 <br>
-<h1>Este modulo de desarrollara en el futuro</h1>
+<h1>Este modulo se desarrollara en el futuro</h1>
 
 <footer>
     <p>&copy; 2024 SystEcam. Todos los derechos reservados.</p>
