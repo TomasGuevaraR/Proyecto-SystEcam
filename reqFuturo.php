@@ -37,11 +37,11 @@ $result = $stmt->get_result();
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item active" href="modulos.php">Inicio</a></li>
-                <li><a class="dropdown-item" href="#">Venta</a></li>
+                <li><a class="dropdown-item" href="venta.php">Venta</a></li>
                 <li><a class="dropdown-item" href="modproducto.php">Producto</a></li>
-                <li><a class="dropdown-item" href="#">Reportes</a></li>
-                <li><a class="dropdown-item" href="#">Clientes</a></li>
-                <li><a class="dropdown-item" href="#">Proveedores</a></li>
+                <li><a class="dropdown-item" href="reporte.php">Reportes</a></li>
+                <li><a class="dropdown-item" href="usuarios.php">Usuarios</a></li>
+                <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="logout.php">Cerrar</a></li>
             </ul>
